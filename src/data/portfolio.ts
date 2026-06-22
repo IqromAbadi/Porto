@@ -7,6 +7,7 @@ export interface Project {
   color: string;
   image: string;
   gradient: string;
+  galleryImages?: string[];
 }
 
 export interface CaseStudyData {
@@ -54,6 +55,14 @@ export const projects: Project[] = [
     color: "#FF6B00",
     image: "/projects/itms.jpg",
     gradient: "from-orange-500/10 to-amber-500/5",
+    galleryImages: [
+      "/projects/itms/preview-1.jpg",
+      "/projects/itms/preview-2.jpg",
+      "/projects/itms/preview-3.jpg",
+      "/projects/itms/preview-4.jpg",
+      "/projects/itms/preview-5.jpg",
+      "/projects/itms/preview-6.jpg",
+    ],
   },
   {
     id: "pressensi",
@@ -65,6 +74,14 @@ export const projects: Project[] = [
     color: "#FF6B00",
     image: "/projects/pressensi.jpg",
     gradient: "from-orange-500/10 to-amber-500/5",
+    galleryImages: [
+      "/projects/pressensi/preview-1.jpg",
+      "/projects/pressensi/preview-2.jpg",
+      "/projects/pressensi/preview-3.jpg",
+      "/projects/pressensi/preview-4.jpg",
+      "/projects/pressensi/preview-5.jpg",
+      "/projects/pressensi/preview-6.jpg",
+    ],
   },
   {
     id: "tilikeen",
@@ -76,6 +93,14 @@ export const projects: Project[] = [
     color: "#FF6B00",
     image: "/projects/tilikeen.jpg",
     gradient: "from-orange-500/10 to-amber-500/5",
+    galleryImages: [
+      "/projects/tilikeen/preview-1.jpg",
+      "/projects/tilikeen/preview-2.jpg",
+      "/projects/tilikeen/preview-3.jpg",
+      "/projects/tilikeen/preview-4.jpg",
+      "/projects/tilikeen/preview-5.jpg",
+      "/projects/tilikeen/preview-6.jpg",
+    ],
   },
   {
     id: "mides",
@@ -87,6 +112,14 @@ export const projects: Project[] = [
     color: "#FF6B00",
     image: "/projects/mides.jpg",
     gradient: "from-orange-500/10 to-amber-500/5",
+    galleryImages: [
+      "/projects/mides/preview-1.jpg",
+      "/projects/mides/preview-2.jpg",
+      "/projects/mides/preview-3.jpg",
+      "/projects/mides/preview-4.jpg",
+      "/projects/mides/preview-5.jpg",
+      "/projects/mides/preview-6.jpg",
+    ],
   },
 ];
 
