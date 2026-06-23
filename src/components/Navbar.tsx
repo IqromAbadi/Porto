@@ -53,12 +53,6 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#contact"
-              className="ml-4 rounded-full bg-[#111111] px-5 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-[#FF6B00]"
-            >
-              Let&apos;s Talk
-            </a>
           </div>
 
           {/* Mobile menu button */}
