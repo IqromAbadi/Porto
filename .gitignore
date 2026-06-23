@@ -1,4 +1,19 @@
-node_modules
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Build
+dist/
+build/
+
+# MacOS
 .DS_Store
-**/.DS_Store.DS_Store
 **/.DS_Store
+
+# Environment
+.env
+.env.local
+.env.production
