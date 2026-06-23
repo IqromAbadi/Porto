@@ -12,20 +12,20 @@ export default function Hero() {
         <div className="absolute -bottom-32 -left-32 h-[400px] w-[400px] rounded-full bg-gray-50 opacity-40 blur-3xl" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-screen-2xl px-6 lg:px-12">
-        <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-24">
+      <div className="relative z-10 mx-auto w-full max-w-screen-2xl px-6 lg:px-12 pt-24 lg:pt-0">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-24">
           {/* Left Content */}
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-8 lg:gap-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col gap-6"
+              className="flex flex-col gap-5 lg:gap-6"
             >
               {/* Name tag */}
               <div className="inline-flex items-center gap-2 self-start rounded-full border border-[#EAEAEA] bg-white px-4 py-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B00] animate-pulse-soft" />
-                <span className="text-sm font-medium text-[#666666]">
+                <span className="text-xs lg:text-sm font-medium text-[#666666]">
                   Iqrom Abadi
                 </span>
               </div>
@@ -40,7 +40,7 @@ export default function Hero() {
               </h1>
 
               {/* Subheadline */}
-              <p className="max-w-lg text-lg leading-relaxed text-[#666666]">
+              <p className="max-w-lg text-base lg:text-lg leading-relaxed text-[#666666]">
                 Mobile Engineer focused on Flutter, Real-Time Applications,
                 Enterprise Platforms, IoT Integration, and User-Centered Product
                 Development.
@@ -56,18 +56,18 @@ export default function Hero() {
                 delay: 0.2,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="flex flex-wrap items-center gap-4"
+              className="flex flex-col xs:flex-row flex-wrap items-stretch xs:items-center gap-3 lg:gap-4"
             >
               <a
                 href="#projects"
-                className="group inline-flex items-center gap-3 rounded-full bg-[#111111] px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#FF6B00] hover:shadow-lg hover:shadow-orange-500/20"
+                className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#111111] px-6 lg:px-7 py-3 lg:py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#FF6B00] hover:shadow-lg hover:shadow-orange-500/20"
               >
                 View Projects
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-3 rounded-full border border-[#EAEAEA] bg-white px-7 py-3.5 text-sm font-semibold text-[#111111] transition-all duration-300 hover:border-[#111111] hover:bg-[#F8F8F8]"
+                className="group inline-flex items-center justify-center gap-3 rounded-full border border-[#EAEAEA] bg-white px-6 lg:px-7 py-3 lg:py-3.5 text-sm font-semibold text-[#111111] transition-all duration-300 hover:border-[#111111] hover:bg-[#F8F8F8]"
               >
                 Contact Me
                 <ArrowDown className="h-4 w-4 text-[#666666] transition-transform duration-300 group-hover:translate-y-1" />
@@ -79,7 +79,7 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="flex gap-12 border-t border-[#EAEAEA] pt-8"
+              className="flex flex-wrap gap-6 xs:gap-12 border-t border-[#EAEAEA] pt-6 lg:pt-8"
             >
               {[
                 { value: "12+", label: "Apps Built" },
@@ -87,10 +87,10 @@ export default function Hero() {
                 { value: "130+", label: "Monthly Users" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-2xl font-bold tracking-tight text-[#111111]">
+                  <div className="text-xl lg:text-2xl font-bold tracking-tight text-[#111111]">
                     {stat.value}
                   </div>
-                  <div className="mt-1 text-sm text-[#666666]">
+                  <div className="mt-0.5 lg:mt-1 text-xs lg:text-sm text-[#666666]">
                     {stat.label}
                   </div>
                 </div>
@@ -98,20 +98,20 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right - iPhone Mockup */}
+          {/* Right - iPhone Mockup (hidden on mobile) */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex items-center justify-center lg:justify-end"
+            className="relative hidden lg:flex items-center justify-center lg:justify-end"
           >
             <motion.div
-              animate={{ y: [0, -15, 0] }}
+              animate={{ y: [0, -12, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="relative"
             >
               {/* iPhone Frame */}
-              <div className="relative h-[580px] w-[280px] rounded-[3rem] border-[3px] border-[#111111] bg-[#111111] p-2 shadow-2xl shadow-black/10">
+              <div className="relative h-[500px] xl:h-[580px] w-[240px] xl:w-[280px] rounded-[3rem] border-[3px] border-[#111111] bg-[#111111] p-2 shadow-2xl shadow-black/10">
                 {/* Dynamic Island */}
                 <div className="absolute left-1/2 top-2.5 z-10 h-[22px] w-[100px] -translate-x-1/2 rounded-full bg-[#111111]" />
 
@@ -212,12 +212,12 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — desktop only */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:block"
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}

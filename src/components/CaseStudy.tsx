@@ -61,10 +61,10 @@ export default function CaseStudy() {
                       The Problem
                     </span>
                   </div>
-                  <h3 className="text-display-sm text-[#111111]">
+                  <h3 className="text-display-sm text-[#111111] break-words">
                     {study.projectName}
                   </h3>
-                  <div className="flex flex-wrap gap-6 text-sm text-[#666666]">
+                  <div className="flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm text-[#666666]">
                     <span className="flex items-center gap-1.5">
                       <span className="font-semibold text-[#111111]">
                         Role:
@@ -75,7 +75,7 @@ export default function CaseStudy() {
                       <span className="font-semibold text-[#111111]">Duration:</span> {study.duration}
                     </span> */}
                   </div>
-                  <p className="text-base leading-relaxed text-[#666666]">
+                  <p className="text-sm sm:text-base leading-relaxed text-[#666666] break-words">
                     {study.problem}
                   </p>
                 </motion.div>
@@ -87,20 +87,25 @@ export default function CaseStudy() {
                       The Challenge
                     </span>
                   </div>
-                  <p className="text-base leading-relaxed text-[#666666]">
+                  <p className="text-sm sm:text-base leading-relaxed text-[#666666] break-words">
                     {study.challenge}
                   </p>
 
                   {/* Architecture preview card */}
-                  <div className="rounded-2xl border border-[#EAEAEA] bg-white p-6">
-                    <div className="mb-4 text-xs font-semibold uppercase tracking-wider text-[#999999]">
+                  <div className="rounded-2xl border border-[#EAEAEA] bg-white p-4 sm:p-6">
+                    <div className="mb-3 sm:mb-4 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-[#999999]">
                       Architecture Overview
                     </div>
-                    <div className="grid gap-2">
+                    <div className="grid gap-1.5 sm:gap-2">
                       {study.architecture.map((item, i) => (
-                        <div key={i} className="flex items-start gap-3">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF6B00]" />
-                          <span className="text-sm text-[#666666]">{item}</span>
+                        <div
+                          key={i}
+                          className="flex items-start gap-2 sm:gap-3"
+                        >
+                          <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0 text-[#FF6B00]" />
+                          <span className="text-xs sm:text-sm text-[#666666] break-words">
+                            {item}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -117,7 +122,7 @@ export default function CaseStudy() {
                       The Solution
                     </span>
                   </div>
-                  <p className="text-base leading-relaxed text-[#666666]">
+                  <p className="text-sm sm:text-base leading-relaxed text-[#666666] break-words">
                     {study.solution}
                   </p>
 
@@ -125,17 +130,17 @@ export default function CaseStudy() {
                   <div
                     className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${study.gradient} p-0.5`}
                   >
-                    <div className="rounded-2xl bg-white p-6">
+                    <div className="rounded-2xl bg-white p-4 sm:p-6">
                       <div className="text-xs font-semibold uppercase tracking-wider text-[#999999] mb-3">
                         Technology Stack
                       </div>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
                         {study.architecture.map((item, i) => {
                           const tech = item.split(" with ")[0].split(" ")[0];
                           return (
                             <span
                               key={i}
-                              className="rounded-full bg-[#F8F8F8] px-3 py-1 text-xs font-medium text-[#666666]"
+                              className="rounded-full bg-[#F8F8F8] px-2.5 sm:px-3 py-1 text-[10px] sm:text-xs font-medium text-[#666666]"
                             >
                               {tech}
                             </span>
@@ -153,21 +158,21 @@ export default function CaseStudy() {
                       The Result
                     </span>
                   </div>
-                  <p className="text-base leading-relaxed text-[#666666]">
+                  <p className="text-sm sm:text-base leading-relaxed text-[#666666] break-words">
                     {study.result}
                   </p>
 
                   {/* Metrics Grid */}
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-3 gap-2 sm:gap-3">
                     {study.metrics.map((metric, i) => (
                       <div
                         key={i}
-                        className="flex flex-col items-center justify-center rounded-2xl border border-[#EAEAEA] bg-white p-5 text-center"
+                        className="flex flex-col items-center justify-center rounded-xl sm:rounded-2xl border border-[#EAEAEA] bg-white p-3 sm:p-5 text-center"
                       >
-                        <span className="text-2xl font-bold text-[#111111]">
+                        <span className="text-base sm:text-xl lg:text-2xl font-bold text-[#111111]">
                           {metric.value}
                         </span>
-                        <span className="mt-1 text-[11px] font-medium text-[#999999] leading-tight">
+                        <span className="mt-0.5 sm:mt-1 text-[9px] sm:text-[11px] font-medium text-[#999999] leading-tight break-words">
                           {metric.label}
                         </span>
                       </div>

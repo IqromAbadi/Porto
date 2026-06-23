@@ -65,9 +65,9 @@ export default function FeaturedProjects() {
               <motion.div
                 key={project.id}
                 variants={itemVariants}
-                className={`group relative overflow-hidden rounded-3xl border border-[#EAEAEA] ${colors.bg} card-hover`}
+                className={`group relative overflow-hidden rounded-2xl lg:rounded-3xl border border-[#EAEAEA] ${colors.bg} card-hover`}
               >
-                <div className="grid items-center gap-8 p-8 lg:grid-cols-2 lg:gap-16 lg:p-12">
+                <div className="grid items-center gap-6 lg:gap-16 p-5 lg:p-12 lg:grid-cols-2">
                   {/* Project Image Gallery */}
                   <div className="relative order-2 lg:order-1">
                     <ProjectGalleryPreview
@@ -82,7 +82,7 @@ export default function FeaturedProjects() {
                       <h3 className="text-display-sm text-[#111111]">
                         {project.name}
                       </h3>
-                      <p className="mt-4 max-w-md text-base leading-relaxed text-[#666666]">
+                      <p className="mt-3 lg:mt-4 max-w-md text-sm sm:text-base leading-relaxed text-[#666666] break-words">
                         {project.description}
                       </p>
                     </div>
@@ -92,7 +92,7 @@ export default function FeaturedProjects() {
                       {project.tech.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-full border border-[#EAEAEA] bg-white px-3.5 py-1.5 text-xs font-medium text-[#666666] transition-colors hover:border-[#111111] hover:text-[#111111]"
+                          className="rounded-full border border-[#EAEAEA] bg-white px-2.5 sm:px-3.5 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-[#666666] transition-colors hover:border-[#111111] hover:text-[#111111] whitespace-nowrap"
                         >
                           {tech}
                         </span>
@@ -100,13 +100,15 @@ export default function FeaturedProjects() {
                     </div>
 
                     {/* Impact */}
-                    <div className="flex items-center gap-3 rounded-2xl border border-[#EAEAEA] bg-white px-5 py-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#111111]">
-                        <ArrowUpRight className="h-4 w-4 text-white" />
+                    <div className="flex items-center gap-2 sm:gap-3 rounded-xl sm:rounded-2xl border border-[#EAEAEA] bg-white px-4 sm:px-5 py-2.5 sm:py-3">
+                      <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-[#111111] flex-shrink-0">
+                        <ArrowUpRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white" />
                       </div>
-                      <div>
-                        <div className="text-xs text-[#666666]">Impact</div>
-                        <div className="text-sm font-semibold text-[#111111]">
+                      <div className="min-w-0">
+                        <div className="text-[10px] sm:text-xs text-[#666666]">
+                          Impact
+                        </div>
+                        <div className="text-xs sm:text-sm font-semibold text-[#111111] truncate">
                           {project.impact}
                         </div>
                       </div>
@@ -132,9 +134,9 @@ export default function FeaturedProjects() {
             {additionalProjects.map((name, i) => (
               <div
                 key={i}
-                className="rounded-2xl border border-[#EAEAEA] bg-white px-5 py-4 transition-all duration-300 hover:border-[#111111]/20 hover:shadow-sm"
+                className="rounded-xl sm:rounded-2xl border border-[#EAEAEA] bg-white px-4 sm:px-5 py-3 sm:py-4 transition-all duration-300 hover:border-[#111111]/20 hover:shadow-sm"
               >
-                <span className="text-sm font-medium text-[#666666]">
+                <span className="text-xs sm:text-sm font-medium text-[#666666] break-words">
                   {name}
                 </span>
               </div>
