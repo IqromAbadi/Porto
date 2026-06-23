@@ -107,16 +107,6 @@ export default function Navbar() {
                   {link.label}
                 </motion.a>
               ))}
-              <motion.a
-                href="#contact"
-                onClick={() => setMobileOpen(false)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.4 }}
-                className="mt-4 rounded-full bg-[#FF6B00] px-8 py-3 text-lg font-semibold text-white transition-all hover:bg-[#111111]"
-              >
-                Let&apos;s Talk
-              </motion.a>
             </nav>
           </motion.div>
         )}
