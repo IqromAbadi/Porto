@@ -5,22 +5,22 @@ import { ArrowDown, ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-white">
+    <section className="relative flex min-h-screen items-start lg:items-center overflow-hidden bg-white">
       {/* Subtle background gradient */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -right-64 -top-64 h-[600px] w-[600px] rounded-full bg-orange-50 opacity-60 blur-3xl" />
         <div className="absolute -bottom-32 -left-32 h-[400px] w-[400px] rounded-full bg-gray-50 opacity-40 blur-3xl" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-screen-2xl px-6 lg:px-12 pt-24 lg:pt-0">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-24">
+      <div className="relative z-10 mx-auto w-full max-w-screen-2xl px-6 lg:px-12 pt-16 sm:pt-20 lg:pt-0">
+        <div className="grid items-start lg:items-center gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-24">
           {/* Left Content */}
-          <div className="flex flex-col gap-8 lg:gap-10">
+          <div className="flex flex-col gap-6 sm:gap-8 lg:gap-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col gap-5 lg:gap-6"
+              className="flex flex-col gap-3 sm:gap-5 lg:gap-6"
             >
               {/* Name tag */}
               <div className="inline-flex items-center gap-2 self-start rounded-full border border-[#EAEAEA] bg-white px-4 py-1.5">

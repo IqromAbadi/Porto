@@ -99,7 +99,6 @@ export const projects: Project[] = [
       "/projects/tilikeen/preview-3.jpg",
       "/projects/tilikeen/preview-4.jpg",
       "/projects/tilikeen/preview-5.jpg",
-      "/projects/tilikeen/preview-6.jpg",
     ],
   },
   {
