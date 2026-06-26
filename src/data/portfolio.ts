@@ -69,7 +69,7 @@ export const projects: Project[] = [
     name: "Pressensi",
     description:
       "Enterprise attendance platform for field operators deployed across Java Island with nationwide expansion in progress. Selfie-based check-in with geofencing, scheduling, inspection, inventory, and ticketing modules.",
-    impact: "100+ Devices • 130+ MAU • +49% Growth",
+    impact: "177 Acquisitions • 268 MAU • Play Store + App Store",
     tech: ["Flutter", "REST API", "Geofencing", "Firebase", "Android", "iOS"],
     color: "#FF6B00",
     image: "/projects/pressensi.jpg",
@@ -179,12 +179,11 @@ export const caseStudies: CaseStudyData[] = [
       "Google Play Store & App Store publishing",
     ],
     result:
-      "Deployed across Java Island with nationwide expansion in progress. Achieved 100+ device acquisition and 130+ monthly active users with +49% growth in the last 28 days. The platform supports operators across multiple industrial sites with a comprehensive suite of operational modules.",
+      "Deployed across Java Island with nationwide expansion in progress. Published on both Google Play Store and Apple App Store. Achieved 177 device acquisitions (+37%), 268 monthly active users (+44%), and 51% 7-day retention (+82%) in the last 28 days. App Store: 78 first-time downloads (+255%), 1.27K impressions (+37%), and 13% conversion rate. Android vitals: 0.23% crash rate with 6.33s cold start.",
     metrics: [
-      { label: "Platform", value: "Android & iOS" },
-      { label: "Devices", value: "100+" },
-      { label: "MAU", value: "130+" },
-      { label: "Growth", value: "+49%" },
+      { label: "Acquisitions", value: "177" },
+      { label: "MAU", value: "268" },
+      { label: "7-Day Ret.", value: "51%" },
     ],
     gradient: "from-orange-500 to-amber-600",
   },
@@ -334,15 +333,15 @@ export const experiences: Experience[] = [
 ];
 
 export const metrics: Metric[] = [
-  { value: "12+", label: "Mobile Applications Built" },
-  { value: "100+", label: "Active Devices" },
-  { value: "130+", label: "Monthly Active Users" },
-  { value: "Android & iOS", label: "Cross Platform" },
+  { value: "12+", label: "Mobile Apps Built" },
+  { value: "249+", label: "Total Devices" },
+  { value: "268", label: "Monthly Active Users" },
+  { value: "Play Store + App Store", label: "Published On" },
 ];
 
 export const contactInfo = {
   email: "iqromabadi15@gmail.com",
   linkedin: "www.linkedin.com/in/iqromabadi",
   //github: 'https://github.com/iqromabadi',
-  whatsapp: "+6281234567890",
+  whatsapp: "Let's talk",
 };

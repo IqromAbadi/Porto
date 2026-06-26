@@ -83,14 +83,14 @@ export default function Hero() {
             >
               {[
                 { value: "12+", label: "Apps Built" },
-                { value: "100+", label: "Active Devices" },
-                { value: "130+", label: "Monthly Users" },
+                { value: "249+", label: "Devices Deployed" },
+                { value: "268", label: "Monthly Active Users" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-xl lg:text-2xl font-bold tracking-tight text-[#111111]">
+                  <div className="text-lg sm:text-xl lg:text-2xl font-bold tracking-tight text-[#111111]">
                     {stat.value}
                   </div>
-                  <div className="mt-0.5 lg:mt-1 text-xs lg:text-sm text-[#666666]">
+                  <div className="mt-0.5 lg:mt-1 text-[10px] sm:text-xs lg:text-sm text-[#666666]">
                     {stat.label}
                   </div>
                 </div>
