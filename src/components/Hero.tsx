@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowRight } from "lucide-react";
+import HeroOrbit from "./HeroOrbit";
 
 export default function Hero() {
   return (
@@ -98,117 +99,10 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right - iPhone Mockup (hidden on mobile) */}
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative hidden lg:flex items-center justify-center lg:justify-end"
-          >
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative"
-            >
-              {/* iPhone Frame */}
-              <div className="relative h-[500px] xl:h-[580px] w-[240px] xl:w-[280px] rounded-[3rem] border-[3px] border-[#111111] bg-[#111111] p-2 shadow-2xl shadow-black/10">
-                {/* Dynamic Island */}
-                <div className="absolute left-1/2 top-2.5 z-10 h-[22px] w-[100px] -translate-x-1/2 rounded-full bg-[#111111]" />
-
-                {/* Screen */}
-                <div className="relative h-full w-full overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-[#FF6B00] via-[#FF8C3D] to-[#FFB380]">
-                  {/* App content mockup */}
-                  <div className="absolute inset-0 flex flex-col">
-                    {/* Status bar area */}
-                    <div className="flex items-center justify-between px-6 pt-8 text-[10px] font-medium text-white/80">
-                      <span>9:41</span>
-                      <span>📶 🔋</span>
-                    </div>
-
-                    {/* App header */}
-                    <div className="px-5 pt-4">
-                      <h3 className="text-lg font-bold text-white">ITMS</h3>
-                      <p className="mt-0.5 text-[11px] text-white/70">
-                        Airport Monitoring
-                      </p>
-                    </div>
-
-                    {/* Stats cards */}
-                    <div className="mt-4 flex gap-2 px-4">
-                      <div className="flex-1 rounded-2xl bg-white/15 p-3 backdrop-blur-sm">
-                        <div className="text-[10px] font-medium text-white/70">
-                          Available
-                        </div>
-                        <div className="mt-0.5 text-xl font-bold text-white">
-                          18
-                        </div>
-                      </div>
-                      <div className="flex-1 rounded-2xl bg-white/15 p-3 backdrop-blur-sm">
-                        <div className="text-[10px] font-medium text-white/70">
-                          In Use
-                        </div>
-                        <div className="mt-0.5 text-xl font-bold text-white">
-                          6
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Facility monitoring preview */}
-                    <div className="mx-4 mt-3 flex-1 rounded-2xl bg-white/10 p-3 backdrop-blur-sm">
-                      <div className="flex h-full flex-col justify-center gap-3">
-                        <div className="flex items-center gap-2">
-                          <div className="h-2 w-2 rounded-full bg-green-400" />
-                          <span className="text-[11px] text-white/80">
-                            Terminal 1 — Normal
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="h-2 w-2 rounded-full bg-orange-400" />
-                          <span className="text-[11px] text-white/80">
-                            Terminal 2 — Busy
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <div className="h-2 w-2 rounded-full bg-green-400" />
-                          <span className="text-[11px] text-white/80">
-                            Terminal 3 — Normal
-                          </span>
-                        </div>
-                        <div className="mt-1 rounded-lg bg-white/10 px-2 py-1.5">
-                          <span className="text-[10px] text-white/60">
-                            📡 IoT Sensors • 24/7 Uptime
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Bottom nav */}
-                    <div className="flex items-center justify-around px-8 pb-5 pt-2">
-                      {["📍", "📊", "⚡", "👤"].map((icon, i) => (
-                        <span
-                          key={i}
-                          className={i === 1 ? "text-white" : "text-white/40"}
-                        >
-                          {icon}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Glass reflection */}
-                  <div className="pointer-events-none absolute inset-0 rounded-[2.5rem] bg-gradient-to-tr from-transparent via-white/10 to-transparent" />
-                </div>
-
-                {/* Side button */}
-                <div className="absolute -right-[3px] top-24 h-8 w-[3px] rounded-r bg-[#2a2a2a]" />
-                <div className="absolute -right-[3px] top-36 h-12 w-[3px] rounded-r bg-[#2a2a2a]" />
-                <div className="absolute -left-[3px] top-28 h-10 w-[3px] rounded-l bg-[#2a2a2a]" />
-              </div>
-
-              {/* Glow effect behind iPhone */}
-              <div className="absolute -inset-8 -z-10 rounded-full bg-orange-100/50 blur-3xl" />
-            </motion.div>
-          </motion.div>
+          {/* Right — Orbiting Project Phones (hidden on mobile) */}
+          <div className="relative hidden lg:flex items-center justify-center lg:justify-end">
+            <HeroOrbit />
+          </div>
         </div>
       </div>
 
