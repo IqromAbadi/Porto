@@ -1,12 +1,28 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X, ImageIcon } from "lucide-react";
 
 interface ProjectGalleryPreviewProps {
   images: string[];
   projectName: string;
+}
+
+function getGalleryGridClass(total: number) {
+  if (total >= 6) {
+    return "grid grid-cols-3 gap-1.5 sm:gap-2";
+  }
+
+  return "flex flex-wrap justify-center gap-1.5 sm:gap-2";
+}
+
+function getGalleryTileClass(total: number) {
+  if (total >= 6) {
+    return "w-full";
+  }
+
+  return "w-[calc((100%-0.75rem)/3)] sm:w-[calc((100%-1rem)/3)]";
 }
 
 function GalleryImageTile({
@@ -36,7 +52,7 @@ function GalleryImageTile({
       alt={alt}
       loading="lazy"
       onError={() => setError(true)}
-      className={`h-full w-full object-cover ${className}`}
+      className={`object-cover ${className}`}
     />
   );
 }
@@ -60,7 +76,8 @@ function GalleryNavigation({
             e.stopPropagation();
             onPrev();
           }}
-          className="fixed left-3 top-1/2 z-[60] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 shadow-xl backdrop-blur-md transition-all hover:scale-110 sm:left-6"
+          aria-label="Previous image"
+          className="fixed left-3 top-1/2 z-[60] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 shadow-xl backdrop-blur-md transition-all hover:scale-110 hover:bg-white sm:left-6"
         >
           <ChevronLeft className="h-5 w-5 text-[#111111]" />
         </button>
@@ -72,7 +89,8 @@ function GalleryNavigation({
             e.stopPropagation();
             onNext();
           }}
-          className="fixed right-3 top-1/2 z-[60] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 shadow-xl backdrop-blur-md transition-all hover:scale-110 sm:right-6"
+          aria-label="Next image"
+          className="fixed right-3 top-1/2 z-[60] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 shadow-xl backdrop-blur-md transition-all hover:scale-110 hover:bg-white sm:right-6"
         >
           <ChevronRight className="h-5 w-5 text-[#111111]" />
         </button>
@@ -85,12 +103,14 @@ export default function ProjectGalleryPreview({
   images,
   projectName,
 }: ProjectGalleryPreviewProps) {
-  const displayImages = images.length > 0 ? images.slice(0, 5) : [];
+  const displayImages = images.length > 0 ? images.slice(0, 6) : [];
   const total = displayImages.length;
 
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalIndex, setModalIndex] = useState(0);
+
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const goNext = useCallback(() => {
     if (activeIndex !== null) {
@@ -154,75 +174,116 @@ export default function ProjectGalleryPreview({
   return (
     <>
       {/* Desktop Gallery */}
-      <div className="relative hidden w-full sm:block">
-        <div className="relative overflow-hidden rounded-[2rem] border border-[#EAEAEA] bg-white px-6 py-7 shadow-sm lg:rounded-[3rem] lg:px-10 lg:py-9">
+      <div ref={containerRef} className="relative hidden w-full sm:block">
+        <div className="relative overflow-hidden rounded-xl border border-[#EAEAEA] bg-white p-3 shadow-sm sm:rounded-[1.5rem] sm:p-4 lg:rounded-[2rem]">
           <motion.div
             animate={{
               opacity: activeIndex !== null ? 0.25 : 1,
               filter: activeIndex !== null ? "blur(3px)" : "blur(0px)",
             }}
             transition={{ duration: 0.3 }}
-            className="space-y-5"
+            className={getGalleryGridClass(total)}
           >
-            {/* Row atas: 3 image */}
-            <div className="grid grid-cols-3 gap-5">
-              {displayImages.slice(0, 3).map((src, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setActiveIndex(i)}
-                  className="relative aspect-[16/10] cursor-zoom-in overflow-hidden rounded-2xl bg-gray-100 transition-all duration-300 hover:scale-[1.015]"
-                  aria-label={`Open ${projectName} preview ${i + 1}`}
-                >
-                  <GalleryImageTile
-                    src={src}
-                    alt={`${projectName} preview ${i + 1}`}
-                    className="absolute inset-0"
-                  />
-                </button>
-              ))}
-            </div>
-
-            {/* Row bawah: 2 image di tengah */}
-            {displayImages.length > 3 && (
-              <div className="grid grid-cols-6 gap-5">
-                {displayImages.slice(3, 5).map((src, index) => {
-                  const imageIndex = index + 3;
-
-                  return (
-                    <button
-                      key={imageIndex}
-                      type="button"
-                      onClick={() => setActiveIndex(imageIndex)}
-                      className={`relative aspect-[16/10] cursor-zoom-in overflow-hidden rounded-2xl bg-gray-100 transition-all duration-300 hover:scale-[1.015] ${
-                        index === 0
-                          ? "col-span-2 col-start-2"
-                          : "col-span-2 col-start-4"
-                      }`}
-                      aria-label={`Open ${projectName} preview ${imageIndex + 1}`}
-                    >
-                      <GalleryImageTile
-                        src={src}
-                        alt={`${projectName} preview ${imageIndex + 1}`}
-                        className="absolute inset-0"
-                      />
-                    </button>
-                  );
-                })}
-              </div>
-            )}
+            {displayImages.map((src, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setActiveIndex(i)}
+                className={`relative aspect-[4/3] ${getGalleryTileClass(
+                  total,
+                )} cursor-zoom-in overflow-hidden rounded-xl bg-gray-100 transition-all duration-300 sm:rounded-2xl ${
+                  activeIndex === i
+                    ? "scale-[1.03] ring-2 ring-[#FF6B00] ring-offset-1"
+                    : "hover:scale-[1.02]"
+                }`}
+                aria-label={`Open ${projectName} preview ${i + 1}`}
+              >
+                <GalleryImageTile
+                  src={src}
+                  alt={`${projectName} preview ${i + 1}`}
+                  className="absolute inset-0 h-full w-full"
+                />
+              </button>
+            ))}
           </motion.div>
+
+          <AnimatePresence>
+            {activeIndex !== null && (
+              <motion.div
+                key="desktop-preview-overlay"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-md sm:p-8"
+                onClick={closePreview}
+              >
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.94 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.94 }}
+                  transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                  onClick={(e) => e.stopPropagation()}
+                  className="relative z-10 flex max-h-[90vh] w-auto max-w-[92vw] flex-col overflow-hidden rounded-2xl border border-white/20 bg-white shadow-2xl shadow-black/30 sm:rounded-3xl"
+                >
+                  <div className="relative flex max-h-[82vh] min-h-[200px] items-center justify-center bg-gray-50">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-300">
+                      <ImageIcon className="mb-2 h-12 w-12 opacity-40 sm:h-16 sm:w-16" />
+                      <span className="text-xs text-gray-400 sm:text-sm">
+                        {projectName} — {activeIndex + 1}/{total}
+                      </span>
+                    </div>
+
+                    <img
+                      src={displayImages[activeIndex]}
+                      alt={`${projectName} preview ${activeIndex + 1}`}
+                      className="relative z-10 block max-h-[82vh] max-w-[92vw] object-contain"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+
+                    <button
+                      type="button"
+                      onClick={closePreview}
+                      className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
+                      aria-label="Close preview"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+
+                    <div className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur-sm">
+                      {activeIndex + 1} / {total}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-center border-t border-[#EAEAEA] bg-white px-4 py-3">
+                    <span className="text-sm font-semibold text-[#111111]">
+                      {projectName}
+                    </span>
+                  </div>
+                </motion.div>
+
+                <GalleryNavigation
+                  onPrev={goPrev}
+                  onNext={goNext}
+                  canPrev={total > 1}
+                  canNext={total > 1}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
-        <p className="mt-5 text-center text-base font-medium text-[#999999] sm:text-lg">
+        <p className="mt-2 text-center text-[10px] font-medium text-[#999999] sm:mt-3 sm:text-xs">
           {total} screens — click to preview
         </p>
       </div>
 
       {/* Mobile Gallery */}
       <div className="relative w-full sm:hidden">
-        <div className="relative overflow-hidden rounded-2xl border border-[#EAEAEA] bg-white p-3 shadow-sm">
-          <div className="grid grid-cols-2 gap-2">
+        <div className="relative overflow-hidden rounded-xl border border-[#EAEAEA] bg-white p-3 shadow-sm">
+          <div className={getGalleryGridClass(total)}>
             {displayImages.map((src, i) => (
               <button
                 key={i}
@@ -231,15 +292,15 @@ export default function ProjectGalleryPreview({
                   setModalIndex(i);
                   setModalOpen(true);
                 }}
-                className={`relative aspect-[4/3] cursor-pointer overflow-hidden rounded-xl bg-gray-100 transition-transform duration-150 active:scale-95 ${
-                  i === 0 ? "col-span-2" : ""
-                }`}
+                className={`relative aspect-[4/3] ${getGalleryTileClass(
+                  total,
+                )} cursor-pointer overflow-hidden rounded-xl bg-gray-100 transition-transform duration-150 active:scale-95`}
                 aria-label={`Open ${projectName} preview ${i + 1}`}
               >
                 <GalleryImageTile
                   src={src}
                   alt={`${projectName} preview ${i + 1}`}
-                  className="absolute inset-0"
+                  className="absolute inset-0 h-full w-full"
                 />
               </button>
             ))}
@@ -250,63 +311,6 @@ export default function ProjectGalleryPreview({
           {total} screens — tap to view
         </p>
       </div>
-
-      {/* Desktop Modal */}
-      <AnimatePresence>
-        {activeIndex !== null && (
-          <motion.div
-            key="desktop-preview-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-md sm:p-8"
-            onClick={closePreview}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.94 }}
-              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative z-10 flex max-h-[90vh] max-w-[92vw] flex-col overflow-hidden rounded-3xl border border-white/20 bg-white shadow-2xl"
-            >
-              <div className="relative flex max-h-[82vh] min-h-[220px] items-center justify-center bg-gray-50">
-                <img
-                  src={displayImages[activeIndex]}
-                  alt={`${projectName} preview ${activeIndex + 1}`}
-                  className="relative z-10 block max-h-[82vh] max-w-[92vw] object-contain"
-                />
-
-                <button
-                  type="button"
-                  onClick={closePreview}
-                  className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-
-                <div className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white/90 backdrop-blur-sm">
-                  {activeIndex + 1} / {total}
-                </div>
-              </div>
-
-              <div className="flex items-center justify-center border-t border-[#EAEAEA] bg-white px-4 py-3">
-                <span className="text-sm font-semibold text-[#111111]">
-                  {projectName}
-                </span>
-              </div>
-            </motion.div>
-
-            <GalleryNavigation
-              onPrev={goPrev}
-              onNext={goNext}
-              canPrev={total > 1}
-              canNext={total > 1}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Mobile Modal */}
       <AnimatePresence>
@@ -321,7 +325,7 @@ export default function ProjectGalleryPreview({
             onClick={() => setModalOpen(false)}
           >
             <div
-              className="flex items-center justify-between px-4 py-3"
+              className="safe-top flex items-center justify-between px-4 py-3"
               onClick={(e) => e.stopPropagation()}
             >
               <span className="text-sm font-medium text-white/70">
@@ -332,6 +336,7 @@ export default function ProjectGalleryPreview({
                 type="button"
                 onClick={() => setModalOpen(false)}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 transition-colors hover:bg-white/25"
+                aria-label="Close gallery"
               >
                 <X className="h-5 w-5 text-white" />
               </button>
@@ -351,6 +356,9 @@ export default function ProjectGalleryPreview({
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.22 }}
                   className="block max-h-[68vh] max-w-[92vw] rounded-2xl object-contain"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
                 />
               </AnimatePresence>
 
@@ -359,7 +367,8 @@ export default function ProjectGalleryPreview({
                   <button
                     type="button"
                     onClick={goPrev}
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-white/95 shadow-xl"
+                    aria-label="Previous image"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-white/95 shadow-xl backdrop-blur-md transition-all active:scale-95"
                   >
                     <ChevronLeft className="h-5 w-5 text-[#111111]" />
                   </button>
@@ -371,12 +380,30 @@ export default function ProjectGalleryPreview({
                   <button
                     type="button"
                     onClick={goNext}
-                    className="flex h-11 w-11 items-center justify-center rounded-full bg-white/95 shadow-xl"
+                    aria-label="Next image"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-white/95 shadow-xl backdrop-blur-md transition-all active:scale-95"
                   >
                     <ChevronRight className="h-5 w-5 text-[#111111]" />
                   </button>
                 </div>
               )}
+            </div>
+
+            <div
+              className="safe-bottom flex items-center justify-center gap-2 pb-6 pt-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {displayImages.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setModalIndex(i)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === modalIndex ? "w-6 bg-white" : "w-1.5 bg-white/30"
+                  }`}
+                  aria-label={`Go to image ${i + 1}`}
+                />
+              ))}
             </div>
           </motion.div>
         )}
