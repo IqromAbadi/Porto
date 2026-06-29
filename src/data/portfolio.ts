@@ -291,7 +291,7 @@ export const experiences: Experience[] = [
   {
     role: "Mobile Engineer",
     company: "PT Ayodya Dialog Semesta",
-    period: "Oct 2025 — Present",
+    period: "Oct 2024 — Present",
     description:
       "Leading end-to-end mobile application development. Designing scalable architectures and building enterprise mobile applications using Flutter.",
     achievements: [
