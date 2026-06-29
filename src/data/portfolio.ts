@@ -341,7 +341,7 @@ export const metrics: Metric[] = [
 
 export const contactInfo = {
   email: "iqromabadi15@gmail.com",
-  linkedin: "www.linkedin.com/in/iqromabadi",
+  linkedin: "https://www.linkedin.com/in/iqromabadi",
   //github: 'https://github.com/iqromabadi',
-  whatsapp: "Let's talk",
+  whatsapp: "+6282136987734",
 };
